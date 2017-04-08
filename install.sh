@@ -1,12 +1,13 @@
 source 'utils.sh'
 source 'brew.sh'
 source 'dotfiles.sh'
+source 're_search.sh'
 
 BREW_PACKAGES="fish coreutils node nmap pyenv python3 z yarn wget vim"
 ESSENTIAL_BREW_CASKS="hyper"
-OTHER_BREW_CASKS=""
+OTHER_BREW_CASKS="1password dropbox atom bartender moom jetbrains-toolbox slack spotify transmission google-chrome firefox insomnia postman flux touchswitcher"
 
-NPM_PACKAGES="hpm-cli"
+NPM_PACKAGES="hpm-cli n ncu"
 OMF_PACKAGES="z pure"
 HPM_PACKAGES="hyper-snazzy hyperlinks hypercwd"
 
@@ -15,6 +16,12 @@ echo "###   Dotfiles installation   #####"
 echo "###################################"
 
 echo ""
+
+# Ensure that script is run on OSX
+if ! [ "$(uname)" == "Darwin" ]; then
+    print_error "This script only supports osx"
+    exit 2
+fi
 
 # Get sudo from user
 print_info "You might need to input your sudo password"
@@ -39,24 +46,19 @@ else
     softwareupdate -i "$PROD" --verbose;
 fi
 
-
 print_success "Xcode successfully installed"
 
 # # Show hidden files
-if ask_question "Show hidden files?"; then
+if ask_question "Show hidden files in Finder?"; then
     defaults write com.apple.finder AppleShowAllFiles -boolean true && killall Finder
-    print_success "Hidden files is now displayed in Finder"
-fi  
+    print_success "Hidden files are now visible"
+fi
 
-# # Finder column view
-if ask_question "Use column view in all Finder windows by default?"; then
-  defaults write com.apple.finder FXPreferredViewStyle Clmv
-  print_success "Column view is now default"
-fi  
-
-# TODO: Remove all apps in dock
-# TODO: Reverse search
-# TODO: Only install if OS = Darwin
+# # Show hidden files
+if ask_question "Enable key repeat?"; then
+    defaults write -g ApplePressAndHoldEnabled -bool false
+    print_success "Key repeat enabled"
+fi
 
 # # Teeny tiny dock
 if ask_question "Make dock tiny?"; then
@@ -66,46 +68,55 @@ if ask_question "Make dock tiny?"; then
     print_success "Dock is now teeny tiny"
 fi  
 
-#############################################
-# print_info "\nDotfiles"
-# install_dotfiles
 
 #############################################
-# print_info "\nHomebrew"
-# # Install Brew
-# install_brew
-# install_brew_packages $BREW_PACKAGES
-# install_essential_brew_casks $ESSENTIAL_BREW_CASKS
+print_heading "\nDotfiles"
+install_dotfiles
 
-# if ask_question "Do you want to install the following casks: $OTHER_BREW_CASKS?"; then
-#     install_brew_casks $OTHER_BREW_CASKS
-# fi  
+
+#############################################
+print_heading "\nHomebrew"
+# Install Brew
+install_brew
+install_brew_packages $BREW_PACKAGES
+install_essential_brew_casks $ESSENTIAL_BREW_CASKS
+
+if ask_question "Do you want to install the following casks: $OTHER_BREW_CASKS?"; then
+    install_brew_casks $OTHER_BREW_CASKS
+fi  
+
+
+##################################################
+print_heading "\nNPM packages"
+npm install -g $NPM_PACKAGES
 
 
 ###############################################
-# print_info "\nFish and Oh my fish"
+print_heading "\nFish and Oh my fish"
 
-# print_info "Setting fish as default shell"
-# echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
-# chsh -s /usr/local/bin/fish
-# print_success "Fish successfully set as default shell"
+print_info "Setting fish as default shell"
+echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
+chsh -s /usr/local/bin/fish
+print_success "Fish successfully set as default shell"
 
-# print_info "Installing oh my fish"
-# curl -L https://get.oh-my.fish | fish
-# print_success "Oh my fish successfully installed"
+print_info "Installing oh my fish"
+curl -L https://get.oh-my.fish | fish
+print_success "Oh my fish successfully installed"
 
-# print_info "Installing oh my fish packages"
-# omf install $OMF_PACKAGES
-# print_success "OMF packages successfully installed"
+print_info "Installing oh my fish packages"
+/usr/local/bin/fish -i -c "omf install $OMF_PACKAGES"
+print_success "OMF packages successfully installed"
+
+print_info "Installing re search to fish"
+install_re_search
+print_success "Re search successfully installed"
 
 
 ##################################################
-# print_info "\n Adding Hyper packages"
-# hpm install $HPM_PACKAGES
-
-##################################################
-# npm install -g n $NPM_PACKAGES
-
+print_heading "\n Hyper packages"
+print_info "Installing hyper packages"
+hpm install $HPM_PACKAGES
+print_success "All hyper packages successfully installed"
 
 
 print_success "Install completed successfully! "
