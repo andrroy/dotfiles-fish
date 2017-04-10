@@ -10,6 +10,15 @@ Includes
 
 ![result](http://i.imgur.com/rFw1RRP.jpg)
 
+## Getting started
+1. Clone repo: `git clone https://github.com/andrroy/dotfiles-fish.git`
+2. Install: `cat install.sh | sh`
+
+## Details
+ - [Casks](#casks)
+ - [The actual dotfiles](actual-dotfiles)
+ - [Adding your own packages](installing-your-own-packages)
+
 ### Casks
 As mentioned above, the only manditory cask is Hyper. In addition you may also install:
  - [1password](https://1password.com/)
