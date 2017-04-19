@@ -27,7 +27,7 @@ print_info() {
 }
 
 print_question() {
-    print_in_yellow "  [?] $1 [y/n]"
+    print_in_yellow "  [?] $1"
 }
 
 print_success() {
@@ -35,7 +35,7 @@ print_success() {
 }
 
 ask_question() {
-    print_question "$1"
+    print_question "$1 [y/n]"
     read -r response </dev/tty
     if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
         return 0

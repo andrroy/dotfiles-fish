@@ -2,6 +2,7 @@ source 'utils.sh'
 source 'brew.sh'
 source 'dotfiles.sh'
 source 're_search.sh'
+source 'git_config.sh'
 
 BREW_PACKAGES="fish coreutils node nmap pyenv python3 z yarn wget vim"
 ESSENTIAL_BREW_CASKS="hyper"
@@ -72,6 +73,7 @@ fi
 #############################################
 print_heading "\nDotfiles"
 install_dotfiles
+install_git_config
 
 
 #############################################
