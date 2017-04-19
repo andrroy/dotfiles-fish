@@ -36,6 +36,7 @@ As mentioned above, the only manditory cask is Hyper. In addition you may also i
  - [postman](https://www.getpostman.com/)
  - [flux](https://justgetflux.com/)
  - [touchswitcher](https://hazeover.com/touchswitcher.html)
+ - [itsycal](https://www.mowglii.com/itsycal/)
 
 
 ### Actual dotfiles

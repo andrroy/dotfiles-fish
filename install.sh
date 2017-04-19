@@ -5,7 +5,7 @@ source 're_search.sh'
 
 BREW_PACKAGES="fish coreutils node nmap pyenv python3 z yarn wget vim"
 ESSENTIAL_BREW_CASKS="hyper"
-OTHER_BREW_CASKS="1password dropbox atom bartender moom jetbrains-toolbox slack spotify transmission google-chrome firefox insomnia postman flux touchswitcher"
+OTHER_BREW_CASKS="1password dropbox atom bartender moom jetbrains-toolbox slack spotify transmission google-chrome firefox insomnia postman flux touchswitcher itsycal"
 
 NPM_PACKAGES="hpm-cli n ncu"
 OMF_PACKAGES="z pure"
