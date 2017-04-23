@@ -21,6 +21,7 @@ Includes
 
 ### Casks
 As mentioned above, the only manditory cask is Hyper. In addition you may also install:
+ - [Alfred](https://www.alfredapp.com/)
  - [1password](https://1password.com/)
  - [dropbox](https://www.dropbox.com/)
  - [atom](https://atom.io/)
