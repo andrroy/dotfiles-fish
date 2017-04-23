@@ -1,0 +1,5 @@
+dotfiles/config/fish/fishd.*
+dotfiles/config/fish/functions/fish_prompt.fish
+dotfiles/config/omf/
+dotfiles/config/configstore
+dotfiles/config/fish/conf.d/
