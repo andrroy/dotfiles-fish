@@ -1,0 +1,7 @@
+alias satan='rm /usr/local/var/postgres/postmaster.pid & brew services restart postgresql'
+alias ls 'command ls -FG --group-directories-first'
+alias gap='git add -p'
+alias grom='git rebase -i origin/master --autosquash'
+alias grc='git rebase --continue'
+alias gca='git commit --amend'
+alias gdc='git diff --cached'
