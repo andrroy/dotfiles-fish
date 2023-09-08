@@ -1,20 +1,31 @@
 
 [user]
-    name = Andreas Røyrvik
-    email = andreas@royrik.org
+	name = Andreas Røyrvik
+	email = andrroy@otovo.com
 
 [alias]
-    c = commit
-    cm = commit -m
-    cam = commit -am
-    s = status --short --branch
-    ch = checkout
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	c = commit
+	cm = commit -m
+	cam = commit -am
+	s = status --short --branch
+	ch = checkout
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 
 # Push easily. http://stackoverflow.com/a/23918418/89484
 [push]
-    default = current
+	default = current
+	autoSetupRemote = true
+	autoSetupRemote = true
+	default = current
+	autoSetupRemote = true
 [core]
-    editor = vim
-    excludesfile = /Users/andrroy/.gitignore_global
+	editor = vim
+	excludesfile = /Users/andrroy/.gitignore_global
 
+[pull]
+	rebase = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
